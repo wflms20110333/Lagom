@@ -2,7 +2,7 @@
 chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
   if (window.location.href == "http://www.usaco.org/")
     window.onload = setTimeout(goBack, response.time2);
-  else if (window.location.href != "chrome-extension://fpnaaplokponhkaepckppjikjpjacbfk/options.html")
+  else if (!window.location.href.endsWith("options.html"))
     window.onload = setTimeout(redirect, response.time1);
 });
 
