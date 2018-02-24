@@ -16,9 +16,10 @@
   },
 
   "background": {
-    "scripts": ["eventPage.js"],
-    "persistent": false
+    "scripts": ["background.js"]
   },
+
+  "permissions": ["tabs", "notifications", "<all_urls>"], //"webRequest", "webRequestBlocking"],
 
   "options_page": "options.html"
 }

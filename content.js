@@ -1,38 +1,20 @@
-//alert("Hello from your Chrome extension!");
-//alert(window.location.href);
 
-//var time = 0;
 chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-  //alert(response.farewell);
-  //time = response.time;
-  //window.onload = setTimeout(redirect, response.time);
-  //alert(time);
+  if (window.location.href == "http://www.usaco.org/")
+    window.onload = setTimeout(goBack, response.time2);
+  else if (window.location.href != "chrome-extension://fpnaaplokponhkaepckppjikjpjacbfk/options.html")
+    window.onload = setTimeout(redirect, response.time1);
 });
 
-//alert(time);
-
-//window.onload = setTimeout(redirect, time);
-
 function redirect() {
-  if (window.location.href != "http://www.usaco.org/")
-    window.location.href = 'http://www.usaco.org/';
+  window.location.href = 'http://www.usaco.org/';
 }
 
-
-/*
-window.onbeforeunload = function(event) {
-    event.returnValue = "Write something clever here..";
-};
-*/
-/*
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if (request.message === "clicked_browser_action") {
-      var firstHref = $("a[href^='http']").eq(0).attr("href");
-      console.log(firstHref);
-    }
-  }
-)
-*/
+function goBack() {
+  if (history.length == 0)
+    document.location = document.referrer;
+  else
+    history.go(-1);
+}
 
 //chrome.tabs.reload();

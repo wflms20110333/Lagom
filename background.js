@@ -1,29 +1,13 @@
-// Called when the user clicks on the browser action.
-/*
-chrome.browserAction.onClicked.addListener(function(tab) {
-  // Send a message to the active tab
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    var activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
-  });
-});
-*/
-
-//location.href = 'http://www.usaco.org';
-
-/*
-var host = "http://tpb.pirateparty.org.uk";
-chrome.webRequest.onBeforeRequest.addListener(
-    function(details) {
-         return {redirectUrl: host + details.url.match(/^https?:\/\/[^\/]+([\S\s]*)/)[1]};
-    },
-    {
-        urls: [
-            "*://piratebay.se/*",
-            "*://www.piratebay.se/*"
-        ],
-        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
-    },
-    ["blocking"]
+var timeLeft1 = 5000;
+var timeLeft2 = 3000;
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.greeting == "hello")
+            sendResponse({farewell: "goodbye", time1: timeLeft1, time2: timeLeft2});
+        else if (request.greeting == "herestheinput") {
+            timeLeft1 = request.input1 * 1000;
+            timeLeft2 = request.input2 * 1000;
+            //alert(timeLeft);
+        }
+    }
 );
-*/
