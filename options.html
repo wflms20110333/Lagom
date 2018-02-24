@@ -21,13 +21,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link type="text/css" href="jquery-ui/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
-<!--script type="text/javascript" src="jquery-ui/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="ext/common.js"></script>
-<script type="text/javascript" src="ext/content.js"></script>
+<link type="text/css" href="jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="content.js"></script>
 <script type="text/javascript" src="i18n.js" charset="utf-8"></script>
-<script type="text/javascript" src="options.js" charset="utf-8"></script-->
+<script type="text/javascript" src="options.js" charset="utf-8"></script>
+<script src="imbasic.js"></script>
 <title>Lagom Options</title>
 <style type="text/css" media="screen">
 body
@@ -147,10 +148,10 @@ button
 <table>
   <tr>
     <td style="padding-right: 8px; vertical-align: middle;">
-      <img src="icon.png" srcset="icon.png 2x">
+      <img src="icon.png" srcset="icon.png .01x">
     </td>
     <td>
-      <h1><span class="i18n_options"></span></h1>
+      <h1><span class="i18n_options"><h3>Lagom Options</h3></span></h1>
     </td>
   </tr>
 </table>
@@ -163,21 +164,53 @@ button
 
 <div id="tabs">
   <ul>
-    <li><a href="#tab-filterlists"><span class="i18n_filter_lists"></span></a></li>
-    <li><a href="#tab-userfilters"><span class="i18n_add_your_own_filters"></span></a></li>
-    <li><a href="#tab-whitelisted"><span class="i18n_whitelisted_domains"></span></a></li>
+    <li><a href="#tab-timer"><span class="i18n_filter_lists"><p>Set Timer</p></span></a></li>
+    <li><a href="#tab-blacklisted"><span class="i18n_add_your_own_filters"><p>Blacklist</p></span></a></li>
+    <li><a href="#tab-whitelisted"><span class="i18n_whitelisted_domains"><p>Whitelist</p></span></a></li>
     <li><a href="#tab-general"><span class="i18n_general"></span></a></li>
   </ul>
 
-  <div id="tab-filterlists">
-    <p>
+  <div id="tab-timer">
+    <form id="addbookmark">
+        <p>
+            <label for="minutes">Enter Number of Minutes:</label><br />
+            <input type="text" id="minutes" name="minutes" size="50" value="" />
+        </p>
+        <p>
+            <input id="save" type="submit" value="Set Timer" />
+            <span id="status-display"></span>
+        </p>
+        <!--p>
+            <label for="title">Title</label><br />
+            <input type="text" id="title" name="title" size="50" value="" />
+        </p>
+        <p>
+            <label for="url">Url</label><br />
+            <input type="text" id="url" name="url" size="50" value="" />
+        </p>
+        <p>
+            <label for="summary">Summary</label><br />
+            <textarea id="summary" name="summary" rows="6" cols="35">
+            </textarea>
+        </p>
+        <p>
+            <label for="tags">Tags</label><br />
+            <input type="text" id="tags" name="tags" size="50" value="" />
+        </p>
+        <p>
+            <input id="save" type="submit" value="Save Bookmark" />
+            <span id="status-display"></span>
+        </p-->
+    </form>
+    
+    <!--p>
       <span class="i18n_enable_only_the"></span>
     </p>
     <p>
       <span class="i18n_out_of_date_lists"></span>
       <button id="updateFilterLists" class="refreshButton"><span class="i18n_update_now"></span></button><br />
 
-      <!-- Subscription entry template -->
+      <!-- Subscription entry template >
       <div id="subscriptionTemplate" class="subscription">
         <button class="i18n_filters_subscription_delete_label subscriptionRemoveButton"></button>
         <label class="subscriptionEnabledContainer">
@@ -187,11 +220,11 @@ button
         <span class="subscriptionUpdate"></span>
       </div>
 
-      <!-- Placeholder for list of subscriptions -->
+      <!-- Placeholder for list of subscriptions >
       <div id="filterLists"></div>
       <br />
 
-      <!-- Placeholder for user's filter list URLs -->
+      <!-- Placeholder for user's filter list URLs >
       <div id="userFilterLists" style="margin-bottom: 8px"></div>
 
       <p id="addSubscriptionButton">
@@ -219,7 +252,7 @@ button
         <a id="acceptableAdsLink" href="#" target="_blank" class="i18n_filters_viewList_label"></a>
         <a id="acceptableAdsDocs" href="#" target="_blank" class="i18n_filters_readMore_label"></a>
       </div>
-    </p>
+    </p-->
   </div>
 
   <div id="tab-whitelisted">
@@ -248,7 +281,7 @@ button
     </form>
   </div>
 
-  <div id="tab-userfilters">
+  <div id="tab-blacklisted">
     <p id="filter-must-follow-syntax" class="i18n_filter_must_follow_syntax"></p>
 
     <form id="customFilterForm" action="#">

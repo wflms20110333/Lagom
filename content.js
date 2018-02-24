@@ -1,7 +1,17 @@
 //alert("Hello from your Chrome extension!");
 //alert(window.location.href);
 
-//window.onload = setTimeout(redirect, 3000);
+//var time = 0;
+chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+  //alert(response.farewell);
+  //time = response.time;
+  //window.onload = setTimeout(redirect, response.time);
+  //alert(time);
+});
+
+//alert(time);
+
+//window.onload = setTimeout(redirect, time);
 
 function redirect() {
   if (window.location.href != "http://www.usaco.org/")
