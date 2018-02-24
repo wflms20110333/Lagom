@@ -1,0 +1,113 @@
+<!--DOCTYPE html>
+<html>
+  <head>
+    <title>Lagom</title>
+    <!--script src="popup.js"></script>
+  </head>
+  <body>
+    <h1>Lagom</h1>
+    <p>Set Timer:</p>
+    <!--button id="checkPage">Check this page now!</button>
+  </body>
+</html-->
+
+<!--
+  - This file is part of Adblock Plus <https://adblockplus.org/>,
+  - Copyright (C) 2006-present eyeo GmbH
+  -
+  - Adblock Plus is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU General Public License version 3 as
+  - published by the Free Software Foundation.
+  -
+  - Adblock Plus is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU General Public License
+  - along with Adblock Plus.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+  <html lang="en-US" dir="ltr"><head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <title>Lagom</title>
+  </head>
+  <!-- Set tabindex to work around Chromium issue 304532 -->
+  <body tabindex="1" class="local">
+  
+  <header>
+    <img id="logo" src="icon.png" srcset="icon.png .1x">
+    <h2>Lagom</h2>
+  </header>
+  
+  <div id="wrapper">
+    <!--div id="notification" hidden="">
+      <div id="notification-content">
+        <h1>
+          <span id="notification-title"></span>
+          <span id="notification-close"></span>
+        </h1>
+        <p id="notification-message"></p>
+      </div>
+      <ul id="notification-close-content">
+        <li id="notification-hide" class="i18n_overlay_notification_closing_button_hide">Close this notification</li>
+        <li id="notification-optout" class="i18n_overlay_notification_closing_button_optout">Stop showing notifications</li>
+      </ul>
+    </div-->
+  
+    <div id="clickhide-instructions" class="i18n_clickhide_instructions">After closing this popup, click (or right-click) an element on the page.</div>
+  
+    <ul id="menu">
+      <!--li id="enabled" class="menu-item" role="button">
+        <div class="icon"></div>
+        <span id="enabled-yes" class="i18n_enabled_for_site"><strong>Enabled</strong> on this site</span>
+        <span id="enabled-no" class="i18n_disabled_for_site"><strong>Disabled</strong> on this site</span>
+      </li>
+  
+      <li id="clickhide" class="menu-item" role="button">
+        <div class="icon"></div>
+        <span class="i18n_easy_create_filter">Block element</span>
+      </li>
+      <li id="clickhide-cancel" class="menu-item" role="button">
+        <div class="icon"></div>
+        <span class="i18n_cancel">Cancel</span>
+      </li-->
+  
+      <li id="stats-container">
+        <div class="menu-item collapse" data-option="show_statsinpopup" data-collapsable="stats-container" role="button">
+          <div class="icon"></div>
+          <span class="i18n_stats_title">Ads blocked</span>
+          <div class="collapse-icon-placeholder"></div>
+          <div class="collapse-icon"></div>
+        </div>
+        <ul id="stats" class="collapsable">
+          <li>
+            <div>
+              <div id="stats-page"><strong>0</strong> on this page</div>
+              <div id="stats-total"><strong>41</strong> in total</div>
+            </div>
+  
+            <div id="share">
+              <span class="i18n_stats_share_title">Share this number</span>
+              <div id="share-box">
+                <div data-social="facebook"></div>
+                <div data-social="twitter"></div>
+                <div data-social="gplus"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="show-iconnumber" class="checkbox" role="checkbox" aria-checked="true"></div>
+            <label for="show-iconnumber" class="i18n_stats_show_iconnumber">Show number in icon</label>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+  <footer id="options" role="button">
+    <div class="icon"></div>
+    <span class="i18n_options_short">Options</span>
+  </footer>
+  </body>
+</html>
