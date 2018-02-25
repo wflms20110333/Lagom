@@ -1,5 +1,6 @@
 console.log("Loaded extension");
-var urls = ["*://*.instagram.com/*"];   //    *://*.facebook.com/*
+var urls = [];   //    *://*.facebook.com/*
+//storage = window.localStorage;
  
  function addURL(details){
     urls.push(details);
@@ -26,26 +27,40 @@ var urls = ["*://*.instagram.com/*"];   //    *://*.facebook.com/*
  	}
  }
 
+//if it's already in the storage, 
  function loadUrls() {
-  if(typeof localStorage['prefs'] !== 'undefined') {
-    return updatePrefsFormat(JSON.parse(localStorage['prefs']));
-  } else {
-    return savePrefs(defaultUrls());
+  if(localStorage.get('list') !== 'undefined'){
+  	return updatePrefsFormat(JSON.parse(localStorage.get('list')));
   }
+  else{
+  	return savePrefs(urls);
+  }
+  // if(typeof localStorage['prefs'] !== 'undefined') {
+  //   return updatePrefsFormat(JSON.parse(localStorage['prefs']));
+  // } else {
+  //   return savePrefs(defaultUrls());
+  // }
 }
 
 function updatePrefsFormat(prefs){
-	if(prefs.hasOwnProperty('blacklistinput')){
-		prefs.urls = prefs.blacklistinput;
-		delete prefs.blacklistinput;
-		savePrefs(prefs);
-	}
+	/*	urls = prefs;
+		delete prefs;
+		savePrefs(urls);*/
 	return prefs;
+	// if(prefs.hasOwnProperty('blacklistinput')){
+	// 	prefs.urls = prefs.blacklistinput;
+	// 	delete prefs.blacklistinput;
+	// 	savePrefs(prefs);
+	// }
+	// return prefs;
 }
 
+//save in to storage
 function savePrefs(prefs){
-	localStorage['prefs'] = JSON.stringify(urls);
-	return prefs;
+	storage.setItem("list", JSON.stringify(urls));
+	return urls;
+	// localStorage['prefs'] = JSON.stringify(urls);
+	// return prefs;
 }
 
  function blockRequest(details) {
