@@ -5,10 +5,12 @@ var urls = ["*://*.instagram.com/*"];   //    *://*.facebook.com/*
     urls.push(details);
  }
 
- // function deleteURL(url){
- // 	var index = urls.indexOf(url);
- // 	urls.splice(index, 1);
- // }
+ function deleteURL(url){
+ 	var index = urls.indexOf(url);
+ 	//alert(index);
+ 	if(index > -1)
+ 		urls.splice(index, 1);
+ }
 
  function setDefaultUrls(){
  	return{
@@ -24,20 +26,26 @@ var urls = ["*://*.instagram.com/*"];   //    *://*.facebook.com/*
  	}
  }
 
- function loadPrefs() {
+ function loadUrls() {
   if(typeof localStorage['prefs'] !== 'undefined') {
     return updatePrefsFormat(JSON.parse(localStorage['prefs']));
   } else {
-    return savePrefs(defaultPrefs());
+    return savePrefs(defaultUrls());
   }
 }
 
 function updatePrefsFormat(prefs){
-
+	if(prefs.hasOwnProperty('blacklistinput')){
+		prefs.urls = prefs.blacklistinput;
+		delete prefs.blacklistinput;
+		savePrefs(prefs);
+	}
+	return prefs;
 }
 
 function savePrefs(prefs){
-	
+	localStorage['prefs'] = JSON.stringify(urls);
+	return prefs;
 }
 
  function blockRequest(details) {
@@ -52,18 +60,14 @@ function updateFilters(urls) {
 
  function addSlash(url) {
 
- 	//split by ://
- 	//split by .    check if it's a valid domain name or like www. or us. or some shit and delete that and replace with *
- 	//rejoin with .
- 	//conantenate 
-
- 	url = url.split(.);
- 	if (url[0] )
- 	return "*://*.".concat(url).concat("/*");
+ 	var arr = url.split("https://");
+ 	var str = arr.join("");
+ 	alert(str);
+ 	return "*://*.".concat(str).concat("/*");
  }
 
  function ValidURL(str) {
- 	alert("inside valid");
+ 	//alert("inside valid");
  	var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
@@ -98,19 +102,34 @@ chrome.runtime.onMessage.addListener(
         }*/
         if (request.greeting == "blacklistinput") {
         	if (ValidURL(request.input4)) {
-        		//parsed = addSlash(request.input4);
-	        	addURL(request.input4);
+        		var parsed = addSlash(request.input4);
+	        	addURL(parsed);
 
 	        	//alert(urls.length);
 	        	updateFilters(urls);
         	}
 	        	//urls.push("*://*.facebook.com/*");
-
+	    
        		alert(urls);
 	        	//alert(urls.length);
 	        updateFilters(urls);
         	//urls.push(request.input4);
         }
+
+        if (request.greeting == "whitelistinput") {
+        	if (ValidURL(request.input3)) {
+        		//alert("here");
+        		var parsed = addSlash(request.input3);
+	        	deleteURL(parsed);
+
+	        	//alert(urls.length);
+	        	updateFilters(urls);
+        	}
+        	alert(urls);
+	        	//alert(urls.length);
+	        updateFilters(urls);
+        	//urls.push(request.input4);
+	    }
     }
 );
  

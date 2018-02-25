@@ -19,7 +19,7 @@ function blacklist(){
     //console.log(burl);
     chrome.runtime.sendMessage({greeting: "blacklistinput", input4: burl}, function(response) {
         //console.log(burl);
-        alert("hi im back");
+        //alert("hi im back");
       }
     );
 }
@@ -43,6 +43,7 @@ window.addEventListener('load', function(evt) {
     //addListener('setTimer', setTimer);
     //addListener('blacklistForm', blacklist);
     document.getElementById('blacklistForm').addEventListener('submit', blacklist);
+    document.getElementById('whitelistForm').addEventListener('submit', whitelist);
     //addListener('whitelistForm', whitelist);
 });
 
