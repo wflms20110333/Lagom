@@ -1,27 +1,11 @@
 
 <!DOCTYPE html>
 
-<!--
-  - This file is part of Adblock Plus <https://adblockplus.org/>,
-  - Copyright (C) 2006-present eyeo GmbH
-  -
-  - Adblock Plus is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU General Public License version 3 as
-  - published by the Free Software Foundation.
-  -
-  - Adblock Plus is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  - GNU General Public License for more details.
-  -
-  - You should have received a copy of the GNU General Public License
-  - along with Adblock Plus.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <html>
 <head>
 <meta charset="utf-8">
 <link type="text/css" href="jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+<link rel="stylesheet" href="chrome://resources/css/widgets.css">
 <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="common.js"></script>
@@ -54,6 +38,51 @@ button
 {
   white-space: pre;
 }
+#site-list-wrapper {
+  margin-bottom: 2em;
+}
+
+#site-list-header {
+  font-weight: bold;
+  margin-bottom: .25em;
+}
+
+#site-list {
+  height: 16em;
+  width: 30em;
+  padding: 5px;
+  font: -webkit-control;
+}
+
+#site-list-wrapper .note {
+  width: 33em;
+}
+
+#save-successful {
+	color: green;
+	display: none;
+	margin-left: 1em;
+}
+
+#time-format-error {
+	color: red;
+	display: none;
+}
+
+#save-successful.show, #time-format-error.show {
+	display: inline;
+}
+
+#work-block-info {
+	color: red;
+	display: none;
+	width: 25em;
+}
+
+body.work #work-block-info {
+	display: block;
+}
+
 
 #firefox-warning
 {
@@ -156,18 +185,11 @@ button
   </tr>
 </table>
 
-<div id="firefox-warning" hidden>
-   Don't like what you see?
-   <a href="https://adblockplus.org/blog/the-plan-towards-offering-adblock-plus-for-firefox-as-a-web-extension" target="_blank">Neither do we</a>.
-   This page will be improved soon.
-</div>
-
 <div id="tabs">
   <ul>
     <li><a href="#tab-timer"><span class="i18n_filter_lists"><p>Set Timer</p></span></a></li>
     <li><a href="#tab-blacklisted"><span class="i18n_add_your_own_filters"><p>Blacklist</p></span></a></li>
     <li><a href="#tab-whitelisted"><span class="i18n_whitelisted_domains"><p>Whitelist</p></span></a></li>
-    <li><a href="#tab-general"><span class="i18n_general"></span></a></li>
   </ul>
 
   <div id="tab-timer">
@@ -207,17 +229,28 @@ button
 
   <div id="tab-blacklisted">
     <p id="filter-must-follow-syntax"></p>
-
       <form id="blacklistForm">
-        <p>
+        <td style="max-width:100%">
             <input type="text" id="burl" value="" name= "burl" style="width:100%">
+        </td>
         </p>
         <p>
-            <input id="save" type="submit" value="Submit" />
-            <span id="status-display"></span>
+        	<form id="options-form">
+			      <div id="site-list-wrapper">
+			        <header id="site-list-header">
+			          <span data-i18n="options_site_list_header"></span>
+			        </header>
+			        <textarea id="site-list" readonly="readonly"></textarea>
+			        <p class="note" data-i18n="options_site_list_info"></p>
+			        <p class="note" data-i18n="options_site_list_syntax"></p>
+			      </div>
+			    </form>
+          <input id="save" type="submit" value="Submit" />
+          <span id="status-display"></span>
         </p>
       </form>
-
+      <script type="text/javascript" src="options2.js"></script>
+<!--       <script type="text/javascript" src="options.js"></script> -->
 
 
     <!--form id="blacklistForm" action="#">
@@ -233,22 +266,6 @@ button
             <input id="save" type="submit" value="Submit" />
             <span id="status-display"></span>
     </p-->
-  </div>
-
-  <div id="tab-general">
-    <p>
-      <div id="shouldShowBlockElementMenuContainer">
-        <input type="checkbox" id="shouldShowBlockElementMenu" /><label for="shouldShowBlockElementMenu" class="i18n_show_block_element_menu"></label>
-      </div>
-      <div id="showDevtoolsPanelContainer">
-        <input type="checkbox" id="show_devtools_panel" /><label for="show_devtools_panel" class="i18n_show_devtools_panel"></label>
-      </div>
-      <div id="shouldShowNotificationsContainer" data-section="notifications">
-        <input type="checkbox" id="shouldShowNotifications" /><label for="shouldShowNotifications" class="i18n_overlay_shownotifications_label"></label>
-      </div>
-    </p>
-
-    <p id="found-a-bug" class="i18n_found_a_bug"></p>
   </div>
 </div>
 
