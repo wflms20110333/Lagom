@@ -19,7 +19,10 @@
     "scripts": ["background.js"]
   },
 
-  "permissions": ["tabs", "notifications", "<all_urls>"], //"webRequest", "webRequestBlocking"],
+  "permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
 
   "options_page": "options.html"
 }

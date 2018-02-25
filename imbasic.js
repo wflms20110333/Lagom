@@ -14,8 +14,5 @@ function setTimer() {
 
 // When the popup HTML has loaded
 window.addEventListener('load', function(evt) {
-    // Cache a reference to the status display SPAN
-    statusDisplay = document.getElementById('status-display');
-    // Handle the bookmark form submit event with our addBookmark function
     document.getElementById('setTimer').addEventListener('submit', setTimer);
 });
