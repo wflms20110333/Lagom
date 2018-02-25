@@ -2,6 +2,11 @@ window.addEventListener('load', function(evt) {
     document.getElementById('setTimer').addEventListener('submit', setTimer);
     document.getElementById('blacklistForm').addEventListener('submit', blacklist);
     document.getElementById('whitelistForm').addEventListener('submit', whitelist);
+    // Add the contents of options[0] to #foo:
+    chrome.runtime.sendMessage({greeting: "helpme"}, function(response) {
+        document.getElementById('listurls').appendChild(makeUL(response.urls));
+    });
+    
 });
 
 function setTimer() {
@@ -26,4 +31,22 @@ function whitelist(){
     var wurl = document.getElementById('wurl').value;
     document.getElementById('wurl').value = "";
     chrome.runtime.sendMessage({greeting: "whitelistinput", input3: wurl}, function(response) {});
+
+function makeUL(array) {
+    // Create the list element:
+    var list = document.createElement('ul');
+
+    for(var i = 0; i < array.length; i++) {
+        // Create the list item:
+        var item = document.createElement('li');
+
+        // Set its contents:
+        item.appendChild(document.createTextNode(array[i]));
+
+        // Add it to the list:
+        list.appendChild(item);
+    }
+
+    // Finally, return the constructed list:
+    return list;
 }

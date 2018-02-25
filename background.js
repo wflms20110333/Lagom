@@ -117,6 +117,9 @@ chrome.runtime.onMessage.addListener(
             }
             sendResponse({blocked: seen});
         }
+        else if (request.greeting == "helpme") {
+            sendResponse({urls: urls});
+        }
     }
 );
 
