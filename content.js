@@ -1,13 +1,12 @@
+check();
+setInterval(check, 1000); // change this to one minute
 
-chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-  if (window.location.href == "http://www.usaco.org/")
-    window.onload = setTimeout(goBack, response.time2);
-  else if (!window.location.href.endsWith("options.html"))
-    window.onload = setTimeout(redirect, response.time1);
-});
+function redirect2() {
+  window.location.href = 'https://www.aboutlagom.com/focus';
+}
 
 function redirect() {
-  window.location.href = 'http://www.usaco.org/';
+  window.location.href = 'https://www.aboutlagom.com/resume';
 }
 
 function goBack() {
@@ -17,4 +16,25 @@ function goBack() {
     history.go(-1);
 }
 
-//chrome.tabs.reload();
+function check() {
+  chrome.runtime.sendMessage({greeting: "checkState"}, function(response) {
+    if (window.location.href == 'https://www.aboutlagom.com/resume') {
+      if (!response.on2)
+        goBack();
+    }
+    else if (!window.location.href.endsWith("options.html")) {
+      if (response.on2)
+        redirect();
+      else if (window.location.href == 'https://www.aboutlagom.com/focus') {
+        if (!response.on1)
+          goBack();
+      }
+      else if (response.on1) {
+        chrome.runtime.sendMessage({greeting: "checkIfBlocked", url: window.location.href}, function(response2) {
+          if (response2.blocked)
+            redirect2();
+        });
+      }
+    }
+  });
+}

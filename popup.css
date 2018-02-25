@@ -6,9 +6,10 @@ body
   font-size: 13px;
   color: #545454;
   background-color: #f8f6f2;
-  background-image: url(background.png);
+  background-image: url(../background.png);
 }
 
+/*
 #clickhide-instructions,
 #clickhide-cancel,
 body.clickhide-active li
@@ -42,6 +43,7 @@ header
   border-bottom: 1px solid #e1ddd8;
   background-image: url(background-main.png);
 }
+*/
 
 #logo
 {
@@ -51,6 +53,7 @@ header
   margin: 0px auto;
 }
 
+/*
 #wrapper
 {
   padding: 0px 20px;
@@ -132,7 +135,7 @@ header
 #notification-close-content li::before
 {
   content: "\0203A";
-  display: inline-block; /* prevent pseudo element from being underlined */
+  display: inline-block; /* prevent pseudo element from being underlined 
   width: 10px;
   margin-left: -10px;
 }
@@ -141,16 +144,24 @@ header
 {
   background-color: rgba(255, 255, 255, 0.3);
 }
+*/
 
-footer
+.not-hoverable
+{
+  padding: 10px 35px;
+  background-image: url(background-main.png);
+  text-align: center;
+}
+
+.hoverable
 {
   cursor: pointer;
   padding: 10px 35px;
-  border-top: 1px solid #e1ddd8;
   background-image: url(background-main.png);
+  text-align: center;
 }
 
-footer:hover
+.hoverable:hover
 {
   background: -moz-linear-gradient(top, rgba(70, 50, 0, 0.1), rgba(70, 50, 0, 0.1)),
     url(background-main.png);
@@ -165,6 +176,7 @@ footer .icon
   background-position: -50px -65px;
 }
 
+/*
 ul
 {
   margin: 0px;
@@ -375,6 +387,7 @@ label
 {
   vertical-align: middle;
 }
+*/
 
 h2
 {
