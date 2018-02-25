@@ -20,9 +20,13 @@
   },
 
   "permissions": [
-    "http://*/*",
-    "https://*/*"
-  ],
+     "tabs",
+     "*://*/*",
+     "<all_urls>",
+     "notifications",
+     "webRequest",
+     "webRequestBlocking"
+   ],
 
   "options_page": "options.html"
 }
