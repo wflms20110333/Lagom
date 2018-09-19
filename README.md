@@ -21,6 +21,6 @@ This Chrome extension has three primary modes:
 ## Authors
 
 * [Nancy Shaw](https://github.com/itsnshaw)
-* [Sana Suhail](https://github.com/sakuraa-329)
+* [Sana Suhail](https://github.com/sakuraa-329) - *Artwork*
 * [Alinta Wang](https://github.com/alintawang)
 * [Elizabeth Zou](https://github.com/wflms20110333)
